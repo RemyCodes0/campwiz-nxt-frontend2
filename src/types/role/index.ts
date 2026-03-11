@@ -1,4 +1,4 @@
-import { IDType } from "../_";
+import type { IDType } from "../_";
 export enum RoleType {
     Coordinator = "coordinator",
     Jury = "jury",

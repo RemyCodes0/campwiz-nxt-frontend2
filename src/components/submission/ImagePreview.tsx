@@ -1,4 +1,4 @@
-import { Submission } from "@/types/submission";
+import type { Submission } from "@/types/submission";
 import SubmissionDetails from "./Details";
 // import blurDataURL from "./blurDataURL";
 import React from "react";

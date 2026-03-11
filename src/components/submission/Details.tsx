@@ -1,5 +1,5 @@
 import { MediaType } from "@/types/round"
-import { Submission } from "@/types/submission"
+import type { Submission } from "@/types/submission"
 import { Table, TableBody, TableCell, TableRow, Typography } from "@mui/material"
 import React from "react"
 
@@ -95,6 +95,13 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
 const SubmissionDetails = ({ submission }: DetailsProps) => {
     const truncatedDescription = submission.description?.length > 300 ? submission.description?.slice(0, 300) + '...' : submission.description;
     const truncatedTitle = submission.title?.length > 50 ? submission.title?.slice(0, 50) + '...' : submission.title;
+
+    // Validate createdAtServer
+    const createdAtDate = submission.createdAtServer ? new Date(submission.createdAtServer) : null;
+    const uploadDate = createdAtDate && !isNaN(createdAtDate.getTime())
+        ? dateFormatter.format(createdAtDate)
+        : "N/A";
+
     return (
         <div className="p-2">
             <a href={`https://commons.wikimedia.org/wiki/File:${submission.title}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
@@ -109,7 +116,7 @@ const SubmissionDetails = ({ submission }: DetailsProps) => {
                 <TableBody>
                     <KeyValue name="Author" value={submission.author} />
                     <KeyValue name="Description" value={truncatedDescription} />
-                    <KeyValue name="Upload Date" value={dateFormatter.format(new Date(submission.createdAtServer))} />
+                    <KeyValue name="Upload Date" value={uploadDate} />
                     <MediaDetails submission={submission} />
                 </TableBody>
             </Table>

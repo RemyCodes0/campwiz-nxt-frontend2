@@ -1,5 +1,6 @@
-import { IDType, ResponseList } from "../_";
+import type { ResponseList } from "../_";
 import { EvaluationType, MediaType } from "../round";
+import type { IDType } from "../_";
 
 export interface Submission {
   submissionId: IDType;

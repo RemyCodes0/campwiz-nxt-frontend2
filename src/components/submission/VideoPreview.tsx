@@ -1,4 +1,4 @@
-import { Submission } from "@/types/submission";
+import type { Submission } from "@/types/submission";
 import { lazy, Suspense } from "react";
 import SubmissionDetails from "./Details";
 const VideoApp = lazy(() => import("./VideoPlayer"));

@@ -1,4 +1,4 @@
-import { Submission } from "@/types/submission";
+import type { Submission } from "@/types/submission";
 import { Paper } from "@mui/material";
 import { lazy, Suspense } from "react";
 import SubmissionDetails from "./Details";

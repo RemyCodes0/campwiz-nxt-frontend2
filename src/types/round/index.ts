@@ -1,6 +1,9 @@
-import { CommonFilter, IDType, WikimediaUsername } from "../_";
-import { Role } from "../role";
+import type {  WikimediaUsername } from "../_";
+import type { IDType } from "../_";
+import type { Role } from "../role";
+
 import { RoundStatus } from "./status";
+import type { CommonFilter } from "../_";
 
 // These are the restrictions that are applied to the articles that are submitted to the campaign
 type RoundCommonRestrictions = {
