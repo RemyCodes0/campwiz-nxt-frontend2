@@ -42,7 +42,7 @@ function App() {
             <Route path="/*" element={<PrivateRoute />} />
             <Route path="/submissionList" element={<SubmissionListPage />} />
             <Route path="/evaluationList" element={<EvaluationListPage />} />
-            <Route path="/evaluationList" element={<EvaluationPreviewPage />} />
+            <Route path="/evaluationPreview" element={<EvaluationPreviewPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
