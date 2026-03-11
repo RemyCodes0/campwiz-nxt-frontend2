@@ -18,6 +18,24 @@ const KeyValue = ({ name, value }: { name: string, value: React.ReactNode }) => 
         </TableRow>
     )
 }
+// const Duration = ({ duration }: { duration: number }) => {
+//     if (duration < 0) {
+//         return <>Unknown</>
+//     }
+//     if (duration < 1000) {
+//         return <>{duration}ms</>
+//     }
+//     if (duration < 60000) {
+//         return <>{Math.floor(duration / 1000)}s</>
+//     }
+//     if (duration < 3600000) {
+//         return <>{Math.floor(duration / 60000)}:{Math.round(duration / 1000)}s</>
+//     }
+//     if (duration < 86400000) {
+//         return <>{Math.floor(duration / 3600000)}:{Math.round(duration / 60000)}:{duration / 1000}s</>
+//     }
+//     return <>{Math.floor(duration / 3600000)}:{Math.round(duration / 60000)}:{duration / 1000}s</>
+// }
 const Duration = ({ duration }: { duration: number }) => {
     if (duration < 0) {
         return <>Unknown</>
@@ -29,12 +47,20 @@ const Duration = ({ duration }: { duration: number }) => {
         return <>{Math.floor(duration / 1000)}s</>
     }
     if (duration < 3600000) {
-        return <>{Math.floor(duration / 60000)}:{Math.round(duration / 1000)}s</>
+        const minutes = Math.floor(duration / 60000);
+        const seconds = Math.floor((duration / 1000) % 60);
+        return <>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}s</>
     }
     if (duration < 86400000) {
-        return <>{Math.floor(duration / 3600000)}:{Math.round(duration / 60000)}:{duration / 1000}s</>
+        const hours = Math.floor(duration / 3600000);
+        const minutes = Math.floor((duration % 3600000) / 60000);
+        const seconds = Math.floor((duration % 60000) / 1000);
+        return <>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}s</>
     }
-    return <>{Math.floor(duration / 3600000)}:{Math.round(duration / 60000)}:{duration / 1000}s</>
+    const hours = Math.floor(duration / 3600000);
+    const minutes = Math.floor((duration % 3600000) / 60000);
+    const seconds = Math.floor((duration % 60000) / 1000);
+    return <>{hours}:{minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}s</>
 }
 const AudioDetails = ({ submission }: DetailsProps) => {
     if (![MediaType.AUDIO, MediaType.VIDEO].includes(submission.mediatype)) {

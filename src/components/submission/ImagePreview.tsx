@@ -1,5 +1,5 @@
 import { Submission } from "@/types/submission";
-import SubmissionDetails from "./preview/Details";
+import SubmissionDetails from "./Details";
 // import blurDataURL from "./blurDataURL";
 import React from "react";
 
