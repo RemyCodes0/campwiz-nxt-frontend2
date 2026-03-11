@@ -1,25 +1,27 @@
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import SessionProvider from "./providers/SessionProvider";
+import LoginPage from "./pages/user/Login";
+import CallbackPage from "./pages/user/Callback";
+import CallbackWritePage from "./pages/user/Callback/write";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import InitColorSchemeScript from "@mui/material/InitColorSchemeScript";
+import theme from "./theme";
+import GlobalLoadingPage from "./components/GlobalLoadingPage";
+import SubmissionListPage from "./pages/submission/SubmissionPage";
+import EvaluationListPage from "./pages/submission/SubmissionPage/evaluation";
+import EvaluationPreviewPage from "./pages/submission/SubmissionPage/evaluation/EvaluationPage";
 
-import { lazy, Suspense } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
-import SessionProvider from './providers/SessionProvider'
-import LoginPage from './pages/user/Login'
-import CallbackPage from './pages/user/Callback'
-import CallbackWritePage from './pages/user/Callback/write'
-import { ThemeProvider, CssBaseline } from '@mui/material'
-import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import theme from './theme'
-import GlobalLoadingPage from './components/GlobalLoadingPage'
-
-const PrivacyPolicy = lazy(() => import('./pages/policy/Privacy'))
-const TermsOfService = lazy(() => import('./pages/policy/Terms'))
+const PrivacyPolicy = lazy(() => import("./pages/policy/Privacy"));
+const TermsOfService = lazy(() => import("./pages/policy/Terms"));
 const PrivateRoute = () => {
   return (
     <SessionProvider>
       <h1>Welcome to the App!</h1>
     </SessionProvider>
-  )
-}
+  );
+};
 
 function App() {
   return (
@@ -31,15 +33,21 @@ function App() {
           <Routes>
             <Route path="/user/login" element={<LoginPage />} />
             <Route path="/user/callback" element={<CallbackPage />} />
-            <Route path="/user/callback/write" element={<CallbackWritePage />} />
+            <Route
+              path="/user/callback/write"
+              element={<CallbackWritePage />}
+            />
             <Route path="/policy/privacy" element={<PrivacyPolicy />} />
             <Route path="/policy/terms" element={<TermsOfService />} />
             <Route path="/*" element={<PrivateRoute />} />
+            <Route path="/submissionList" element={<SubmissionListPage />} />
+            <Route path="/evaluationList" element={<EvaluationListPage />} />
+            <Route path="/evaluationList/:preview" element={<EvaluationPreviewPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;
