@@ -2,7 +2,7 @@ import { Submission } from "@/types/submission";
 import { Paper } from "@mui/material";
 import { lazy, Suspense } from "react";
 import SubmissionDetails from "./Details";
-const AudioApp = lazy(() => import("./audioPlayer"));
+const AudioApp = lazy(() => import("./AudioPlayer"));
 
 const AudioPreview = ({ submission }: { submission: Submission }) => {
   return (
